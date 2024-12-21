@@ -1,0 +1,282 @@
+[
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.62839394006274,
+        10.750243678639457
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c897",
+    "cinema_name": "Galaxy Kinh Dương Vương",
+    "address": "718 Đ. Kinh Dương Vương, Phường 13, Quận 6, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 5.0,
+    "hasManyAmenities": false
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.6179682090705,
+        10.801816205425826
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c898",
+    "cinema_name": "CGV Celadon Tân Phú, Aeon Mall",
+    "address": "30 Đ. Tân Thắng, Sơn Kỳ, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.9,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.63426768239121,
+        10.806514852210972
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c899",
+    "cinema_name": "CGV Pandora City, Pandora City",
+    "address": "1/1 Đ. Trường Chinh, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.3,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.66011590937403,
+        10.798810416618306
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c89a",
+    "cinema_name": "CGV Hoàng Văn Thụ",
+    "address": "415 Đ. Hoàng Văn Thụ, Phường 2, Tân Bình, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 3.9,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.6407523977355,
+        10.790697776274595
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c89b",
+    "cinema_name": "Galaxy Cinema Tân Bình",
+    "address": "246 Đ. Nguyễn Hồng Đào, Phường 13, Tân Bình, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.2,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.6824182958823,
+        10.780870857781993
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c89c",
+    "cinema_name": "Mega GS Cinemas Lý Chính Thắng",
+    "address": "212 Lý Chính Thắng, Phường 9, Quận 3, Thành phố Hồ Chí Minh 72414, Việt Nam",
+    "rating": 3.2,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.68207391354409,
+        10.778949935786802
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c89d",
+    "cinema_name": "BHD Star Cineplex",
+    "address": "Vincom Plaza 3/2, 3C Đ. 3 Tháng 2, Phường 11, Quận 10, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "rating": 4.2,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.69312312286519,
+        10.77342320196169
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c89e",
+    "cinema_name": "Galaxy Nguyễn Du",
+    "address": "116 Đ. Nguyễn Du, Phường Bến Thành, Quận 1, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "rating": 4.1,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.68732743820972,
+        10.764033610498284
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c89f",
+    "cinema_name": "Cinestar Cinema Quốc Thanh",
+    "address": "271 Đ. Nguyễn Trãi, Phường Nguyễn Cư Trinh, Quận 1, Thành phố Hồ Chí Minh 70000, Việt Nam",
+    "rating": 4.7,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.73633001122613,
+        10.712518468487897
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a0",
+    "cinema_name": "Galaxy Cinema Huỳnh Tấn Phát",
+    "address": "1362 Huỳnh Tấn Phát, Phú Mỹ, Quận 7, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "rating": 3.7,
+    "hasManyAmenities": false
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.63396816519383,
+        10.847352894910623
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a1",
+    "cinema_name": "Galaxy Cinema Nguyễn Văn Quá",
+    "address": "119B Nguyễn Văn Quá, Đông Hưng Thuận, Quận 12, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.6,
+    "hasManyAmenities": false
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.61798532471883,
+        10.801997073894167
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a2",
+    "cinema_name": "CGV Celadon Tân Phú",
+    "address": "Aeon Mall, 30 Đ. Tân Thắng, Sơn Kỳ, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.1,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.66233138424482,
+        10.83486854022337
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a3",
+    "cinema_name": "Galaxy Cinema Quang Trung",
+    "address": "304A Quang Trung, Phường 11, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.0,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.67158785355538,
+        10.838379363829441
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a4",
+    "cinema_name": "Lotte Cinema Gò Vấp",
+    "address": "Lotte Mart, 242 Nguyễn Văn Lượng, Phường 10, Gò Vấp, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "rating": 3.9,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.68921724232764,
+        10.827285119028842
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a5",
+    "cinema_name": "CGV Gò Vấp",
+    "address": "12 Đ. Phan Văn Trị, Phường 5, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.3,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.73309271128197,
+        10.804342955783484
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a6",
+    "cinema_name": "CGV Thảo Điền Pearl",
+    "address": "12 Đ. Quốc Hương, Thảo Điền, Quận 2, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.8,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.74701811308043,
+        10.801582731789004
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a7",
+    "cinema_name": "Lotte Cinema Cantavil",
+    "address": "RP2W+HQC, Song Hành, An Phú, Quận 2, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.2,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.77867586704704,
+        10.845294273018514
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a8",
+    "cinema_name": "Bhd Star Lê Văn Việt",
+    "address": "Vincom Plaza, Lê Văn Việt, Hiệp Phú, Quận 9, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 3.9,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.7652353670471,
+        10.85023734482356
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8a9",
+    "cinema_name": "CGV Vincom Thủ Đức",
+    "address": "216 Võ Văn Ngân, Bình Thọ, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.1,
+    "hasManyAmenities": true
+  },
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.77670605355591,
+        10.868047462564746
+      ]
+    },
+    "_id": "665c88ef03eba08e4455c8aa",
+    "cinema_name": "Galaxy Co.opXtra Linh Trung",
+    "address": "934 QL1A, Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam",
+    "rating": 4.5,
+    "hasManyAmenities": true
+  }
+]

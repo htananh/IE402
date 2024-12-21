@@ -1,0 +1,502 @@
+[
+    {
+        "id": "traffic_light_458",
+        "latitude": 10.7702697,
+        "longitude": 106.6316994
+    },
+    {
+        "id": "traffic_light_142",
+        "latitude": 10.7935116,
+        "longitude": 106.718378
+    },
+    {
+        "id": "traffic_light_408",
+        "latitude": 10.7591674,
+        "longitude": 106.6514853
+    },
+    {
+        "id": "traffic_light_1614",
+        "latitude": 10.7979864,
+        "longitude": 106.5971621
+    },
+    {
+        "id": "traffic_light_1504",
+        "latitude": 10.8414438,
+        "longitude": 106.7437141
+    },
+    {
+        "id": "traffic_light_1246",
+        "latitude": 10.7613796,
+        "longitude": 106.7011584
+    },
+    {
+        "id": "traffic_light_1411",
+        "latitude": 10.768944,
+        "longitude": 106.6963398
+    },
+    {
+        "id": "traffic_light_710",
+        "latitude": 10.7600103,
+        "longitude": 106.6733047
+    },
+    {
+        "id": "traffic_light_263",
+        "latitude": 10.8019055,
+        "longitude": 106.7458102
+    },
+    {
+        "id": "traffic_light_982",
+        "latitude": 10.7316386,
+        "longitude": 106.7201045
+    },
+    {
+        "id": "traffic_light_1889",
+        "latitude": 10.8110405,
+        "longitude": 106.6762329
+    },
+    {
+        "id": "traffic_light_1623",
+        "latitude": 10.8265665,
+        "longitude": 106.7605273
+    },
+    {
+        "id": "traffic_light_459",
+        "latitude": 10.7701688,
+        "longitude": 106.6318298
+    },
+    {
+        "id": "traffic_light_902",
+        "latitude": 10.7656233,
+        "longitude": 106.667641
+    },
+    {
+        "id": "traffic_light_848",
+        "latitude": 10.7836327,
+        "longitude": 106.6543156
+    },
+    {
+        "id": "traffic_light_436",
+        "latitude": 10.7568259,
+        "longitude": 106.6534876
+    },
+    {
+        "id": "traffic_light_220",
+        "latitude": 10.7974592,
+        "longitude": 106.6906159
+    },
+    {
+        "id": "traffic_light_1820",
+        "latitude": 10.7916673,
+        "longitude": 106.6439063
+    },
+    {
+        "id": "traffic_light_388",
+        "latitude": 10.7495451,
+        "longitude": 106.6287727
+    },
+    {
+        "id": "traffic_light_183",
+        "latitude": 10.7526474,
+        "longitude": 106.7284578
+    },
+    {
+        "id": "traffic_light_473",
+        "latitude": 10.7545648,
+        "longitude": 106.6319989
+    },
+    {
+        "id": "traffic_light_437",
+        "latitude": 10.7514939,
+        "longitude": 106.6040402
+    },
+    {
+        "id": "traffic_light_1836",
+        "latitude": 10.7925745,
+        "longitude": 106.639332
+    },
+    {
+        "id": "traffic_light_16",
+        "latitude": 10.8043261,
+        "longitude": 106.7158856
+    },
+    {
+        "id": "traffic_light_719",
+        "latitude": 10.7567616,
+        "longitude": 106.5865199
+    },
+    {
+        "id": "traffic_light_1649",
+        "latitude": 10.7296742,
+        "longitude": 106.7182954
+    },
+    {
+        "id": "traffic_light_689",
+        "latitude": 10.7499428,
+        "longitude": 106.6287455
+    },
+    {
+        "id": "traffic_light_740",
+        "latitude": 10.7574066,
+        "longitude": 106.5837008
+    },
+    {
+        "id": "traffic_light_1738",
+        "latitude": 10.7986365,
+        "longitude": 106.6650705
+    },
+    {
+        "id": "traffic_light_1891",
+        "latitude": 10.7734747,
+        "longitude": 106.6893608
+    },
+    {
+        "id": "traffic_light_1162",
+        "latitude": 10.7560481,
+        "longitude": 106.6836626
+    },
+    {
+        "id": "traffic_light_1817",
+        "latitude": 10.791251,
+        "longitude": 106.6438581
+    },
+    {
+        "id": "traffic_light_691",
+        "latitude": 10.7623015,
+        "longitude": 106.6765828
+    },
+    {
+        "id": "traffic_light_649",
+        "latitude": 10.7592717,
+        "longitude": 106.6514655
+    },
+    {
+        "id": "traffic_light_1482",
+        "latitude": 10.8157747,
+        "longitude": 106.6952334
+    },
+    {
+        "id": "traffic_light_1823",
+        "latitude": 10.7980688,
+        "longitude": 106.6436501
+    },
+    {
+        "id": "traffic_light_182",
+        "latitude": 10.7527903,
+        "longitude": 106.7284486
+    },
+    {
+        "id": "traffic_light_372",
+        "latitude": 10.7564081,
+        "longitude": 106.6331576
+    },
+    {
+        "id": "traffic_light_539",
+        "latitude": 10.745574,
+        "longitude": 106.625704
+    },
+    {
+        "id": "traffic_light_705",
+        "latitude": 10.7576912,
+        "longitude": 106.6695359
+    },
+    {
+        "id": "traffic_light_1843",
+        "latitude": 10.7865347,
+        "longitude": 106.6434652
+    },
+    {
+        "id": "traffic_light_1096",
+        "latitude": 10.7529498,
+        "longitude": 106.6614117
+    },
+    {
+        "id": "traffic_light_1478",
+        "latitude": 10.8164279,
+        "longitude": 106.6952263
+    },
+    {
+        "id": "traffic_light_99",
+        "latitude": 10.7828823,
+        "longitude": 106.6980764
+    },
+    {
+        "id": "traffic_light_1708",
+        "latitude": 10.8351216,
+        "longitude": 106.7660206
+    },
+    {
+        "id": "traffic_light_1366",
+        "latitude": 10.76031,
+        "longitude": 106.6772089
+    },
+    {
+        "id": "traffic_light_532",
+        "latitude": 10.7761102,
+        "longitude": 106.6383789
+    },
+    {
+        "id": "traffic_light_516",
+        "latitude": 10.7379953,
+        "longitude": 106.6345781
+    },
+    {
+        "id": "traffic_light_1226",
+        "latitude": 10.8261716,
+        "longitude": 106.6802216
+    },
+    {
+        "id": "traffic_light_1155",
+        "latitude": 10.7409861,
+        "longitude": 106.696097
+    },
+    {
+        "id": "traffic_light_1472",
+        "latitude": 10.753598,
+        "longitude": 106.6868337
+    },
+    {
+        "id": "traffic_light_875",
+        "latitude": 10.7563528,
+        "longitude": 106.676163
+    },
+    {
+        "id": "traffic_light_1471",
+        "latitude": 10.7542207,
+        "longitude": 106.6868973
+    },
+    {
+        "id": "traffic_light_934",
+        "latitude": 10.7282693,
+        "longitude": 106.7031314
+    },
+    {
+        "id": "traffic_light_205",
+        "latitude": 10.8032397,
+        "longitude": 106.6845465
+    },
+    {
+        "id": "traffic_light_1255",
+        "latitude": 10.7645469,
+        "longitude": 106.7073728
+    },
+    {
+        "id": "traffic_light_1042",
+        "latitude": 10.8357474,
+        "longitude": 106.7659461
+    },
+    {
+        "id": "traffic_light_1191",
+        "latitude": 10.7585757,
+        "longitude": 106.7007473
+    },
+    {
+        "id": "traffic_light_1494",
+        "latitude": 10.773916,
+        "longitude": 106.6776577
+    },
+    {
+        "id": "traffic_light_1024",
+        "latitude": 10.8371646,
+        "longitude": 106.6553916
+    },
+    {
+        "id": "traffic_light_440",
+        "latitude": 10.7640868,
+        "longitude": 106.6324673
+    },
+    {
+        "id": "traffic_light_196",
+        "latitude": 10.7143489,
+        "longitude": 106.7370105
+    },
+    {
+        "id": "traffic_light_383",
+        "latitude": 10.7636734,
+        "longitude": 106.6979155
+    },
+    {
+        "id": "traffic_light_60",
+        "latitude": 10.7735902,
+        "longitude": 106.7000977
+    },
+    {
+        "id": "traffic_light_639",
+        "latitude": 10.7534302,
+        "longitude": 106.6496433
+    },
+    {
+        "id": "traffic_light_775",
+        "latitude": 10.7696701,
+        "longitude": 106.6131772
+    },
+    {
+        "id": "traffic_light_754",
+        "latitude": 10.7535691,
+        "longitude": 106.6535272
+    },
+    {
+        "id": "traffic_light_70",
+        "latitude": 10.791433,
+        "longitude": 106.6874992
+    },
+    {
+        "id": "traffic_light_359",
+        "latitude": 10.741668,
+        "longitude": 106.6298156
+    },
+    {
+        "id": "traffic_light_120",
+        "latitude": 10.726627,
+        "longitude": 106.6202316
+    },
+    {
+        "id": "traffic_light_1123",
+        "latitude": 10.7385791,
+        "longitude": 106.7111818
+    },
+    {
+        "id": "traffic_light_1485",
+        "latitude": 10.7739476,
+        "longitude": 106.6778398
+    },
+    {
+        "id": "traffic_light_500",
+        "latitude": 10.7658706,
+        "longitude": 106.6640589
+    },
+    {
+        "id": "traffic_light_1272",
+        "latitude": 10.744415,
+        "longitude": 106.7157592
+    },
+    {
+        "id": "traffic_light_1853",
+        "latitude": 10.8156977,
+        "longitude": 106.6033701
+    },
+    {
+        "id": "traffic_light_657",
+        "latitude": 10.7572423,
+        "longitude": 106.6717382
+    },
+    {
+        "id": "traffic_light_215",
+        "latitude": 10.7560124,
+        "longitude": 106.6903573
+    },
+    {
+        "id": "traffic_light_547",
+        "latitude": 10.7385469,
+        "longitude": 106.6273773
+    },
+    {
+        "id": "traffic_light_853",
+        "latitude": 10.770964,
+        "longitude": 106.7026406
+    },
+    {
+        "id": "traffic_light_1341",
+        "latitude": 10.7685038,
+        "longitude": 106.698946
+    },
+    {
+        "id": "traffic_light_52",
+        "latitude": 10.7790997,
+        "longitude": 106.6974154
+    },
+    {
+        "id": "traffic_light_497",
+        "latitude": 10.7645653,
+        "longitude": 106.6614323
+    },
+    {
+        "id": "traffic_light_96",
+        "latitude": 10.7814762,
+        "longitude": 106.6996356
+    },
+    {
+        "id": "traffic_light_766",
+        "latitude": 10.7446273,
+        "longitude": 106.6129965
+    },
+    {
+        "id": "traffic_light_1643",
+        "latitude": 10.7284862,
+        "longitude": 106.7121048
+    },
+    {
+        "id": "traffic_light_920",
+        "latitude": 10.7285176,
+        "longitude": 106.708374
+    },
+    {
+        "id": "traffic_light_1784",
+        "latitude": 10.7987309,
+        "longitude": 106.6318707
+    },
+    {
+        "id": "traffic_light_326",
+        "latitude": 10.8257693,
+        "longitude": 106.714516
+    },
+    {
+        "id": "traffic_light_1344",
+        "latitude": 10.8449544,
+        "longitude": 106.7864697
+    },
+    {
+        "id": "traffic_light_912",
+        "latitude": 10.7601228,
+        "longitude": 106.6654556
+    },
+    {
+        "id": "traffic_light_63",
+        "latitude": 10.7923255,
+        "longitude": 106.6936951
+    },
+    {
+        "id": "traffic_light_1491",
+        "latitude": 10.7716216,
+        "longitude": 106.6856276
+    },
+    {
+        "id": "traffic_light_1251",
+        "latitude": 10.7536517,
+        "longitude": 106.6748427
+    },
+    {
+        "id": "traffic_light_308",
+        "latitude": 10.7562851,
+        "longitude": 106.6664828
+    },
+    {
+        "id": "traffic_light_793",
+        "latitude": 10.7584049,
+        "longitude": 106.6437432
+    },
+    {
+        "id": "traffic_light_1071",
+        "latitude": 10.7456616,
+        "longitude": 106.6586142
+    },
+    {
+        "id": "traffic_light_1258",
+        "latitude": 10.7632949,
+        "longitude": 106.7036816
+    },
+    {
+        "id": "traffic_light_495",
+        "latitude": 10.7476918,
+        "longitude": 106.6480281
+    },
+    {
+        "id": "traffic_light_1686",
+        "latitude": 10.7898316,
+        "longitude": 106.595734
+    },
+    {
+        "id": "traffic_light_349",
+        "latitude": 10.8291512,
+        "longitude": 106.7225229
+    }
+]
