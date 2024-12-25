@@ -108,12 +108,12 @@ const Screen1 = ({ route, navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handlePressItem(item)}>
             <View style={styles.listItem}>
-              <Image source={{ uri: item.image }} style={styles.image} />
+              <Image source={require("../../assets/cinemammm.jpg")} style={styles.image} />
               <View style={styles.infoContainer}>
                 <Text style={styles.cinemaName}>{item.cinema_name}</Text>
                 <View style={styles.detailsContainer}>
                   <Image
-                    source={require("../../assets/map.png")}
+                    source={require("../../assets/cinemammm.jpg")}
                     style={styles.imgicon}
                   />
                   <Text style={styles.address}>{item.address}</Text>

@@ -109,13 +109,14 @@ export default function Customer() {
                 <Icon name="log-out-outline" size={24} color="#ff0000" />
               </TouchableOpacity>
             ),
-        headerShown: !getHiddenDrawer(route), // Ẩn header nếu ở màn hình cần ẩn
+        headerShown: !getHiddenDrawer(route), // Ẩn header cho 
       })}
     >
       <Drawer.Screen name="HomePage" component={HomeScreen} options={{ title: 'Trang Chủ' }} />
       <Drawer.Screen name="UserInfo" component={UserInfo} options={{ title: 'Thông Tin Tài Khoản' }} />
       <Drawer.Screen name="YourTicket" component={YourTicket} options={{ title: 'Vé Của Bạn' }} />
-      <Drawer.Screen name="Map" component={Map} options={{ title: 'Bản đồ' }} />
+
+      <Drawer.Screen name="Map"  component={Map} options={{ title: 'Bản đồ' }} />
       <Drawer.Screen
         name="SalesPromotionStack"
         component={SalesPromotionStack}

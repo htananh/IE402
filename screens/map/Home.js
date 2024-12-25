@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, Button, Dimensions, ScrollView, TextInput, Modal, TurboModuleRegistry, Alert } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import MapView, { Marker, Polyline, Polygon, Circle } from 'react-native-maps';
+import React, { useState, useEffect,useCallback } from 'react';
+import MapView, { Marker, Polyline, Polygon, Circle,Callout, CalloutSubview } from 'react-native-maps';
 import * as Location from 'expo-location';
 import cinemaData from './data/db.json';
 import axios from 'axios';
@@ -10,12 +10,16 @@ import jsonTrafficData from './data/updated_data.json'
 import { parseData, dijkstra } from './Dijkstra';
 
 const { nodes, edges } = parseData(jsonData);
+
+
 const customIcon = require('../../assets/placeholder.png'); //Icon Map
 const cinemaIcon = require('../../assets/cinema.png'); //Icon Map
 const trafficIcon = require('../../assets/traffic-lights.png'); //Icon Map
 const roadIcon = require('../../assets/destination.png'); //Icon Map
 
 export default function Home({ route, navigation }) {
+
+
 
   const defaultLocation = () => {
     return {
@@ -57,7 +61,8 @@ export default function Home({ route, navigation }) {
   const [trafficShow, setTrafficShow] = useState(false);
   const [showCircle, setShowCircle] = useState(false);
   const [roadCoordinates, setRoadCoordinates] = useState([]);
-
+  const [isMenuVisible, setIsMenuVisible] = useState(false); // Quản lý trạng thái menu
+  const [isPlaholderVisible, setIsPlaholderVisible] = useState(false); // Quản lý trạng thái placeholder
 
   //
   useEffect(() => {
@@ -97,7 +102,7 @@ export default function Home({ route, navigation }) {
   const getCurrentLocation = async () => {
     setShowDirections(false);
     setRoadCoordinates('');
-
+    isPlaholderVisible ? setIsPlaholderVisible(false) : setIsPlaholderVisible(true);
     // lấy vị trí mặc định nếu xài máy ảo 
     // setCurrentLocation(defaultUserLocation);
     // setRegion({
@@ -143,6 +148,39 @@ export default function Home({ route, navigation }) {
     setTrafficLights(jsonTrafficData);
   }, []);
 
+  //hàm lấy vị trí khi click vào bản đồ marker
+  const handleMarkerPress = useCallback((selectedMarker) => {
+    if (!selectedMarker || !selectedMarker.coordinate) {
+      console.warn("Invalid marker data");
+      return;
+    }
+  
+    setNearestCinema({
+      cinema_name: selectedMarker.title,
+      address: selectedMarker.address,
+      location: {
+        coordinates: [
+          selectedMarker.coordinate.longitude,
+          selectedMarker.coordinate.latitude,
+        ],
+      },
+      rating: selectedMarker.rating,
+    });
+  
+    setRegion({
+      latitude: selectedMarker.coordinate.latitude,
+      longitude: selectedMarker.coordinate.longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    });
+  
+    console.log("Selected Cinema:", selectedMarker);
+  }, []);
+  
+  
+  
+  
+
   //Function: Tìm rạp phim gần nhất
   const handleFindNearestCinema = async () => {
     setNearestCinema(null);
@@ -151,6 +189,7 @@ export default function Home({ route, navigation }) {
     setShowDirections(false);
     setRoadCoordinates('');
     setDistrictBoundary(null);
+    setIsMenuVisible(!isMenuVisible); 
     try {
       if (currentLocation) {
         let nearestCinema = null;
@@ -162,6 +201,8 @@ export default function Home({ route, navigation }) {
           if (distance < nearestDistance) {
             nearestDistance = distance;
             nearestCinema = cinema;
+            // in ra nearesCinema đê kiểm tra
+            console.log(nearestCinema);
           }
         });
 
@@ -226,6 +267,9 @@ export default function Home({ route, navigation }) {
             coordinate: { latitude: cinema.location.coordinates[1], longitude: cinema.location.coordinates[0] },
             title: cinema.cinema_name,
             description: cinema.location_name,
+            address: cinema.address,
+            rating: cinema.rating,
+            distance: (calculateDistance(currentLocation.latitude, currentLocation.longitude, cinema.location.coordinates[1], cinema.location.coordinates[0])/1000).toFixed(2),
           }));
 
           setTheaterMarkers(theaterMarkers);
@@ -281,15 +325,18 @@ export default function Home({ route, navigation }) {
     setRoadCoordinates('');
     setDistrictBoundary(null);
     if (nearestCinema && currentLocation) {
+      console.log('Nearest Cinema:', nearestCinema);
+      console.log('Current Location:', currentLocation);
       const fetchRoute = async () => {
         const apiKey = '5b3ce3597851110001cf62487deba5884bab40368ea9db93f488210b'; // Thay YOUR_API_KEY bằng API key của bạn
         const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${currentLocation.longitude},${currentLocation.latitude}&end=${nearestCinema.location.coordinates[0]},${nearestCinema.location.coordinates[1]}`;
 
         try {
-          console.log('API URL:', url);
+
+
 
           const response = await axios.get(url);
-          console.log('Đã lấy thông tin đường đi');
+          console.log('Đã lấy thông tin đường đi', response.data);
 
           // Kiểm tra xem response.data có tồn tại và có chứa features hay không
           if (response.data && response.data.features && response.data.features.length > 0) {
@@ -400,7 +447,7 @@ export default function Home({ route, navigation }) {
     if (district) {
       const cinemas = cinemaData.filter(cinema => cinema.address.includes(district));
       setCinemasInDistrict(cinemas);
-
+      console.log("quận ",cinemas);
       const districtInfo = districtData.features.find(feature => feature.properties.Ten_Huyen === district);
       if (districtInfo) {
         setDistrictBoundary(districtInfo.geometry.coordinates[0]);
@@ -410,7 +457,9 @@ export default function Home({ route, navigation }) {
         const districtMarkers = cinemas.map(cinema => ({
           coordinate: { latitude: cinema.location.coordinates[1], longitude: cinema.location.coordinates[0] },
           title: cinema.cinema_name,
-          description: cinema.address,
+            description: cinema.location_name,
+            address: cinema.address,
+            rating: cinema.rating,
         }));
         setTheaterMarkers(districtMarkers);
         setRegion({
@@ -450,7 +499,9 @@ export default function Home({ route, navigation }) {
         const districtMarkers = cinemas.map(cinema => ({
           coordinate: { latitude: cinema.location.coordinates[1], longitude: cinema.location.coordinates[0] },
           title: cinema.cinema_name,
-          description: cinema.address,
+            description: cinema.location_name,
+            address: cinema.address,
+            rating: cinema.rating,
         }));
         setTheaterMarkers(districtMarkers);
         setRegion({
@@ -477,6 +528,8 @@ export default function Home({ route, navigation }) {
     setShowDirections(false);
     setRoadCoordinates('');
     setDistrictBoundary(null);
+    setIsMenuVisible(!isMenuVisible); 
+
     if (true) {
       console.log(district);
       const cinemas = cinemaData.filter(cinema => cinema.cinema_name.includes('CGV'));
@@ -594,6 +647,8 @@ export default function Home({ route, navigation }) {
     } else {
       Alert.alert('Invalid start or end point');
     }
+    setIsMenuVisible(!isMenuVisible); 
+
   };
 
   //Xóa
@@ -607,18 +662,31 @@ export default function Home({ route, navigation }) {
     setDistrictBoundary(null);
     setFunctionX(false);
     setRouteCoords([]);
+    isPlaholderVisible ? setIsPlaholderVisible(false) : setIsPlaholderVisible(true);
   };
 
   const handleShowTrafficLights = () => {
     setTrafficShow(!trafficShow);
     setTrafficLights(jsonTrafficData);
+    setIsMenuVisible(!isMenuVisible); 
+
   };
+  const handleNavigatePress = () => {
+    if (trafficShow) {
+      handleFindOptimizedPath();
+    } else {
+      handleShowDirections();
+    }
+  };
+  
 
   return (
     <ScrollView>
       <View style={styles.container}>
+      
         <View >
-          <View>
+     
+         <View>
             {region ? (
               <View style={{ width: 400, height: 850 }}>
                 <MapView style={{ width: 400, height: 850 }} region={region}>
@@ -637,29 +705,56 @@ export default function Home({ route, navigation }) {
                       center={currentLocation}
                       radius={radius * 500}
                       strokeColor="#FF0000"
-                      fillColor="rgba(255,0,0,0.3)"
+                      fillColor="rgba(3, 133, 239, 0.3)"
                     />
                   )}
                   {/* Hiển thị Markers cho các rạp chiếu phim gần đó */}
                   {theaterMarkers.map((marker, index) => (
+                    
                     <Marker
                       key={index}
                       coordinate={marker.coordinate}
-                      title={marker.title}
-                      description={marker.description}
+                      onPress={() => handleMarkerPress(marker)}
                     >
-                      <Image source={cinemaIcon} style={{ width: 50, height: 50 }} />
+                       <Image source={cinemaIcon} style={{ width: 50, height: 50 }} />
+                       <Callout  >
+                <View style={styles.calloutContainer} >
+                
+                  <CalloutSubview style={styles.navigateButton}  onPress={handleShowDirections}>
+                    <Text style={styles.navigateButtonText}>Đường đi</Text>
+                  
+                  </CalloutSubview>
+                  <Text style={styles.calloutTitle}>{marker.title}</Text>
+                  <Text style={styles.calloutAddress}>{marker.address}</Text>
+                   <Text style={styles.rating}>⭐ {marker.rating}</Text>
+                   <Text style={styles.distance}>📍 {marker.distance} km</Text>
+                </View>
+     </Callout>
+                     
+                      
                     </Marker>
                   ))}
 
                   {/* Hiển thị Marker cho rạp chiếu phim gần nhất */}
                   {nearestCinema && (
                     <Marker
+                   
                       coordinate={{ latitude: nearestCinema.location.coordinates[1], longitude: nearestCinema.location.coordinates[0] }}
                       title={nearestCinema.cinema_name}
                       description={nearestCinema.location_name}
                     >
                       <Image source={cinemaIcon} style={{ width: 50, height: 50 }} />
+                      <Callout  >
+    <View style={styles.calloutContainer} >
+     
+      <CalloutSubview style={styles.navigateButton} onPress={handleShowDirections}>
+        <Text style={styles.navigateButtonText}>Đường đi</Text>
+       
+      </CalloutSubview>
+      <Text style={styles.calloutTitle}>{nearestCinema.cinema_name}</Text>
+      <Text style={styles.calloutAddress}>{nearestCinema.address}</Text>
+    </View>
+  </Callout>
                     </Marker>
                   )}
                   {/* Hiển thị các rạp phim trong một quận */}
@@ -668,7 +763,7 @@ export default function Home({ route, navigation }) {
                       coordinates={districtBoundary.map(coord => ({ latitude: coord[1], longitude: coord[0] }))}
                       strokeColor="#FF0000"
                       fillColor="rgba(255,0,0,0.2)"
-                      strokeWidth={2}
+                      strokeWidth={5} // có nghĩa là độ dày của đường viền
                     />
                   )}
 
@@ -745,7 +840,7 @@ export default function Home({ route, navigation }) {
             )}
           </View>
           <View style={{ position: 'absolute', width: '100%', top: '3%', flexDirection: 'row', alignItems: 'center' }}>
-            <TouchableOpacity
+          <TouchableOpacity
               style={styles.input}
               onPress={() => {
                 setNearestCinema(null);
@@ -759,56 +854,103 @@ export default function Home({ route, navigation }) {
             >
               <Text style={{ paddingTop: 3 }}>Tìm rạp phim...</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.greenBorder} onPress={handleFindNearestCinema}><Image source={require('../../assets/cinema_icon.png')} style={styles.image2} /></TouchableOpacity>
-            <TouchableOpacity style={styles.greenBorder} onPress={() => { trafficShow ? handleFindOptimizedPath() : handleShowDirections() }}><Image source={require('../../assets/destination.png')} style={styles.image2} /></TouchableOpacity>
+          <TouchableOpacity style={styles.greenBorder} onPress={() => {
+    setIsMenuVisible(!isMenuVisible); 
+  }}><Image source={require('../../assets/setting-2.png')} style={styles.image2} /></TouchableOpacity>
+            {/* <TouchableOpacity style={styles.greenBorder}  onPress={handleFindNearestCinema}><Image source={require('../../assets/cinema_icon.png')} style={styles.image2} /></TouchableOpacity> */}
+            
             {/* <TouchableOpacity style={styles.greenBorder} onPress={ handleShowDirections }><Image source={require('../../assets/destination.png')} style={styles.image2} /></TouchableOpacity> */}
 
           </View>
+        
+         
+          <View style={{ position: 'absolute', bottom: '16%', right: 70 }}>
+            
+          </View>
           <View style={{ position: 'absolute', bottom: '16%', right: 10 }}>
-            <TouchableOpacity style={styles.greenBorder} onPress={getCurrentLocation}><Image source={require('../../assets/placeholder.png')} style={styles.image2} /></TouchableOpacity>
+            <TouchableOpacity style={styles.greenBorder} onPress={() => {
+              setIsPlaholderVisible(!isPlaholderVisible); }}><Image source={require('../../assets/google-maps.png')} style={styles.image2} /></TouchableOpacity>
           </View>
           <View style={{ position: 'absolute', bottom: '16%', flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 15, marginTop: 5 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('Locate')}>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('Locate')}>
               <View style={styles.greenBorder}>
                 <Image source={require('../../assets/google-maps.png')} style={styles.image2} />
               </View>
+            </TouchableOpacity> */}
+            <TouchableOpacity style={styles.greenBorder} onPress={() => { trafficShow ? handleFindOptimizedPath() : handleShowDirections() }}>
+              <Image source={require('../../assets/destination.png')} style={styles.image2} />
+            
             </TouchableOpacity>
+            <Text style={{ color: "white", fontWeight: 'bold',    paddingHorizontal: 10,
+            marginTop: 29,
+            marginLeft: 10,
+    paddingVertical: 5,
+    marginRight: 10,
+    backgroundColor: '#7f0d00',
+    borderRadius: 20, 
+    height:30 }}>Đường đi</Text>
           </View>
-          <View style={{ flexDirection: 'row', padding: 10, position: 'absolute', top: '10%' }}>
-            <ScrollView horizontal>
-              <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.menu}>
-                <Text style={{ color: "white", fontWeight: 'bold' }}>Các rạp chiếu phim gần bạn nhất</Text>
+          {isMenuVisible && (
+            <View style={{ flexDirection: 'row', padding: 10, position: 'absolute', top: '10%' }}>
+            <ScrollView >
+        
+            <TouchableOpacity onPress={handleFindNearestCinema} style={styles.menu}>
+                <Text style={{ color: "white", fontWeight: 'bold' }}>Rạp chiếu phim gần bạn nhất</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setModalVisible2(true)} style={styles.menu}>
+              <TouchableOpacity onPress={() => {setModalVisible(true);
+                setIsMenuVisible(!isMenuVisible); }
+              } style={styles.menu}>
+                <Text style={{ color: "white", fontWeight: 'bold' }}>Các rạp chiếu phim trong phạm vi km</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {setModalVisible2(true); 
+                setIsMenuVisible(!isMenuVisible); }
+              } style={styles.menu}>
                 <Text style={{ color: "white", fontWeight: 'bold' }}>Tìm rạp phim trong khu vực quận</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setModalVisible4(true)} style={styles.menu}>
+              {/* <TouchableOpacity onPress={() => {setModalVisible4(true);
+                setIsMenuVisible(!isMenuVisible); }
+              } style={styles.menu}>
                 <Text style={{ color: "white", fontWeight: 'bold' }}>Tìm rạp phim gần đoạn đường</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity onPress={handleShowTrafficLights} style={styles.menu}>
                 <Text style={{ color: "white", fontWeight: 'bold' }}>{trafficShow ? 'Ẩn đèn giao thông' : 'Hiển thị đèn giao thông'}</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setModalVisible3(true)} style={styles.menu}>
+              <TouchableOpacity onPress={() => {setModalVisible3(true);
+    setIsMenuVisible(!isMenuVisible); 
+              }
+              } style={styles.menu}>
                 <Text style={{ color: "white", fontWeight: 'bold' }}>Tìm các rạp phim có đánh giá tốt nhất</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={handleFindCinemasInMall} style={styles.menu}>
+              {/* <TouchableOpacity onPress={handleFindCinemasInMall} style={styles.menu}>
                 <Text style={{ color: "white", fontWeight: 'bold' }}>Tìm các rạp phim thuộc trung tâm thương mại</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={handleFindPath} style={styles.menu}>
                 <Text style={{ color: "white", fontWeight: 'bold' }}>Tìm rạp phim gần UIT</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               {/* Thêm tùy chọn khác nếu cần */}
             </ScrollView>
           </View>
-          <View style={{ position: 'absolute', bottom: '16%', left: '40%', backgroundColor: '#7f0d00', borderRadius: 10, width: 100, height: 30 }}>
-            <TouchableOpacity title="xóa" onPress={handleDeleteAll} >
-              <Text style={{ color: "white", fontWeight: 'bold', padding: 5, alignSelf: 'center' }}>Xóa</Text>
+          )}
+          {isPlaholderVisible && (
+            <View style={{ flexDirection: 'column', padding: 10, position: 'absolute', top: '63%', right: 5 }}>
+              <TouchableOpacity onPress={getCurrentLocation} style={styles.menu2}>
+                <Text style={{ color: "white", fontWeight: 'bold',  }}>Lấy vị trí hiện tại</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Locate'); // Chuyển hướng tới màn hình 'Locate'
+                  setIsPlaholderVisible(!isPlaholderVisible); // Toggle trạng thái isPlaholderVisible
+                }}
+                style={styles.menu2}
+              >
+                <Text style={{ color: "white", fontWeight: 'bold' }}>Chọn vị trí</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.menu2} title="xóa vị trí hiện tại" onPress={handleDeleteAll} >
+              <Text style={{ color: "white", fontWeight: 'bold' }}>Xóa vị trí hiện tại</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity onPress={handleShowTrafficLights} style={styles.menu}>
-              <Text style={{ color: "white", fontWeight: 'bold' }}>Hiển thị đèn giao thông</Text>
-            </TouchableOpacity> */}
-
-          </View>
+              </View>
+          )}
+         
         </View>
         <Modal
           animationType="slide"
@@ -994,6 +1136,32 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     alignItems: 'center',
   },
+  greenBorder123: {
+    borderWidth: 2,
+    borderColor: '#7f0d00',
+    width: 50,
+    height: 50,
+    backgroundColor: '#eee',
+    borderRadius: 10,
+    marginTop: 10,
+    marginLeft: 5,
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    flexDirection: 'row',
+  },
+  greenBorder2: {
+    borderWidth: 2,
+    borderColor: '#7f0d00',
+    width: 50,
+    height: 50,
+    backgroundColor: '#eee',
+    borderRadius: 10,
+    marginTop: 10,
+    marginLeft: 215,
+    alignItems: 'center',
+  },
   greenBorder1: {
     width: 50,
     height: 50,
@@ -1019,7 +1187,7 @@ const styles = StyleSheet.create({
     borderColor: '#7f0d00',
     backgroundColor: '#eee',
     padding: 10,
-    width: '68%',
+    width: '82%',
     borderRadius: 10,
     marginTop: 10,
     marginLeft: 10,
@@ -1036,11 +1204,20 @@ const styles = StyleSheet.create({
     height: 50,
   },
   menu: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginRight: 10,
+    backgroundColor: '#7f0d00',
+    borderRadius: 20,
+    marginBottom: 5,
+  },
+  menu2: {
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginRight: 10,
     backgroundColor: '#7f0d00',
     borderRadius: 20,
+    marginTop: 10,
   },
   centeredView: {
     flex: 1,
@@ -1069,5 +1246,48 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Màu nền mờ
+  },
+  calloutContainer: 
+  {
+    position: 'relative',
+    width: 300, // Tăng chiều rộng
+    backgroundColor: 'white',
+    borderRadius: 15, // Tăng độ cong
+    padding: 20, // Tăng khoảng cách bên trong
+    elevation: 10, // Tăng bóng đổ
+    alignItems: 'center',
+  },
+  calloutTitle: {
+    marginTop: 25,
+    fontSize: 20, // Tăng kích thước chữ tiêu đề
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+    
+  },
+  calloutAddress: {
+    fontSize: 18, // Tăng kích thước chữ địa chỉ
+    marginBottom: 20,
+    color: '#555',
+    textAlign: 'center',
+  },
+  navigateButton: {
+    width: 300, 
+height: 50,
+  position: 'absolute',
+  top:1000,
+    backgroundColor: '#007bff',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    
+  },
+  navigateButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16, // Tăng kích thước chữ trong nút
   },
 });
